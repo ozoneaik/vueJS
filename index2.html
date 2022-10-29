@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="vue-app" style="font-weight: bold;">
+
+        <div @click="changeclass()" style="width:100px; height:100px;"
+        v-bind:class="boxclass">
+        </div>
+        <br>
+        <button @click="changeclass('circle')" type="button" class="btn btn-danger">circle</button>
+        <br>
+        <button @click="changeclass('square')" type="button" class="btn btn-primary">square</button>
+        <!-- <h1>boxtype : {{boxtype}}</h1>
+        <h1>{{boxclass}}</h1> -->
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        var app = Vue.createApp({
+            data() {
+                return {
+                    boxtype: 'circle'
+                }
+            },
+            methods: {
+                changeclass(paramiter) {
+                    if(paramiter == 'circle'){
+                        this.boxtype = 'circle';
+                    }
+                    else if(paramiter == 'square'){
+                        this.boxtype = 'square'
+                    }
+                }
+            },
+            computed: {
+                boxclass() {
+                    return {
+                        circle: this.boxtype == 'circle',
+                        square: this.boxtype == 'square',
+                    }
+                }
+            }
+        });
+        app.mount("#vue-app");
+    </script>
+    <style>
+        .circle {
+            border-radius: 50px;
+            box-shadow: 5px 10px;
+            background-color: #dc3545;
+            margin-left: 1em;
+            margin-top: 1em;
+        }
+
+        .square {
+            border-radius: 20px;
+            background-color: #0d6efd;
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        button{
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        body{
+            background-color: gray;
+        }
+    </style>
+</body>
+
+</html>

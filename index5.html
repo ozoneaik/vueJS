@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="vue-app">
+        <input type="text" v-model="inputText" style="font-size: 18;">
+        <h2>{{inputText}}</h2>
+        <button @click="inputText = 'abcd'">set text = 'abcd'</button>
+        <!-- <input type="text"
+                :value = "inputText"
+                @input="e=>{ inputText=e.target.value }"
+        /> -->
+        <hr>
+        <div>
+            <label><input v-model="inputCheckbox"
+                value="A"
+                type="checkbox" name="checkbox1">AAA
+            </label>
+            <label><input v-model="inputCheckbox"
+                value="B"
+                type="checkbox" name="checkbox1">BBB
+            </label>
+            <label><input v-model="inputCheckbox"
+                value="C"
+                type="checkbox" name="checkbox1">CCC
+            </label>
+            <div>{{inputCheckbox}} <button @click="inputCheckbox =['A','B',C]">set</button></div>
+        </div>
+        <hr>
+        <div>
+            <label><input v-model="inputRadio"
+                value="A"
+                type="radio" name="radio1">AAA
+            </label>
+            <label><input v-model="inputRadio"
+                value="B"
+                type="radio" name="radio1">BBB
+            </label>
+            <label><input v-model="inputRadio"
+                value="C"
+                type="radio" name="radio1">CCC
+            </label>
+            <div>{{inputRadio}}<button @click="inputRadio =''">set</button></div>
+        </div>
+    </div>
+    <hr>
+    <select v-model="inputSelect"
+            name="" id="">
+            <option value="A">AAA</option>
+            <option value="B">BBB</option>
+            <option value="C">CCC</option>
+    </select>
+    <div>{{inputSelect}}<button @click='inputSelect="C"'>set C</button></div>
+
+
+
+    <div>
+        {{inputSelectMulti}}
+        <button @click='inputSelectMulti= "["A","C"]"'>set</button>
+    </div>
+
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js">set</script>
+    <script>
+        var app = Vue.createApp({
+            data() {
+                return {
+                    inputText:'1234',
+                    inputRadio:'',
+                    inputCheckbox :[],
+                    inputSelect:'A',
+                    inputSelectMulti:[]
+                }
+            }
+        })
+        app.mount("#vue-app");
+    </script>
+</body>
+
+</html>

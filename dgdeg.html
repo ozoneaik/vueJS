@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <list-item
+        @cc="setText"
+            v-bind:item="item"
+            v-for="item in items"></list-item>
+            
+    </div>
+    <script id="list-item-template"
+        type="text/x-template"
+    >
+    <div class="item" 
+        @click="onClick">{{item.text}}</div>
+
+    </script>
+
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return { 
+                   items:[
+                    {
+                        color:'red',
+                        text:'hallo'
+                    },
+                    {
+                        color:'blue',
+                        text:'hallo1'
+                    },
+                    {
+                        color:'green',
+                        text:'hall2'
+                    },
+                    {
+                        color:'yellow',
+                        text:'hallo3'
+                    },
+                   ]
+                }
+            },
+            methods:{
+                setText(text,color){
+                    alert(text)
+                }
+            }
+        })
+        app.component('listItem',{
+            props:['item'],
+            template:'#list-item-template',
+            methods: {
+                onClick(){
+                    // alert('click'+this.item.color)
+                    this.$emit('cc',this.item.text)
+                }
+            },
+            
+        })
+        
+        app.mount("#vue-app");
+    </script>
+    <style>
+        *{
+            font-size: 30px;
+        }
+        .item{
+            border: 1px solid rgb(3, 255, 108);
+            padding: 5px 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</body>
+
+</html>

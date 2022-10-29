@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="vue-app" style="font-weight: bold;">
+        <button @click="add(+10)">+10</button>
+        <button @click="add(-10)">-10</button>
+        <div>counter : {{counter}}</div>
+        <div>abs : {{absoluteCounter}}</div>
+        <div>power : {{power}}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        var app = Vue.createApp({
+            data() {
+                return {
+                    counter : 0
+                }
+            },
+            // mounted() {
+            //     console.log(this);
+            //     setInterval(()=>{
+            //         this.counter = this.counterObjet.counter += 5
+            //         console.log(this.counterObjet.counter)
+                    
+            //     },1000)
+            //     console.log('mounted')
+            // },
+            methods: {
+                add(num){
+                    this.counter = this.counter + num
+                }
+            },
+            computed: {
+                absoluteCounter(){
+                    return Math.abs(this.counter);
+                },
+                power(){
+                    return Math.pow(this.absoluteCounter,2);
+                }
+            },
+        });
+        app.mount("#vue-app");
+    </script>
+</body>
+
+</html>
